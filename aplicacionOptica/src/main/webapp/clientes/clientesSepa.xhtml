@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <f:view>
+
+        <h:head>
+            <title>Clientes</title>
+            <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
+            <meta name="viewport" content="width=device-width, initial-scale=1"/>
+            <meta name="apple-mobile-web-app-capable" content="yes"/>
+            <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+
+            <meta http-equiv="cache-control" content="max-age=0" />
+            <meta http-equiv="cache-control" content="no-cache" />
+            <meta http-equiv="expires" content="0" />
+            <meta http-equiv="expires" content="Tue, 01 Jan 2000 1:00:00 GMT" />
+            <meta http-equiv="pragma" content="no-cache" /> 
+
+            <link rel="stylesheet" href="#{facesContext.externalContext.requestContextPath}/recursos/optica.css" type="text/css" />
+
+        </h:head>
+
+        <h:body>
+
+            <div class="page">
+
+                <h:form id="formulario">
+                    
+                    <p:growl id="messages" />
+
+                    <div class="header">
+                        <table width="100%">
+                            <tr>
+                                <td width="90%">
+                                    <p:inputText readonly="true" size="50" />
+                                </td>
+                                <td rowspan="2">
+                                    <h:graphicImage class="derecha" value="/recursos/logo.png" width="130px" height="60px" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p:commandButton value="Volver" class="izquierda" action="clientesLista.xhtml" icon="icono-volver" iconPos="left" />
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+
+
+                    <div class="content">
+
+                        <ui:include src="clientesDatos.xhtml" />
+
+                        <table width="100%">
+
+                            <tr>
+                                <td colspan="3">
+                                    <table>
+                                        <tr>
+                                            <td valign="top" width="10px">
+                                                <center>
+                                                    <p:signature guideline="true" style="width:300px;height:200px" widgetVar="sig" value="#{ControladorClientes.firmaSepa}">
+
+                                                    </p:signature>
+                                                </center>
+                                                <p:commandButton value="Borrar Firma" icon="ui-icon-close" type="button" onclick="PF('sig').clear()"/>
+                                                <p:splitButton   value="Grabar Firma" type="button" class="derecha" update="messages" icon="ui-icon-check"
+                                                                 actionListener="#{ControladorClientes.cmdGrabarFirma2}" />
+                                            </td>
+                                            <td valign="top">
+                                                <p:outputLabel class="label" value="Orden de Domiciliacion de Adeudo directo SEPA" /><br/><br/>
+                                                <p>
+                                                    Mediante la firma de esta orden de domiciliacion, el deudor autoriza (A) al acreedor a enviar instrucciones 
+                                                    a la entidad del deudor para adeudar su cuenta y (B) a la entidad para efectuar los adeudos en su cuenta 
+                                                    siguiendo las instrucciones del acreedor. Como parte de sus derechos, el deudor esta legitimado al reembolso 
+                                                    por su entidad en los terminos y condiciones del contrato suscrito con la misma. La solicitud de reembolso 
+                                                    debera efectuarse dentro de las ocho semanas que siguen a la fecha de adeudo en cuenta. Puede obtener 
+                                                    informacion adicional sobre sus derechos en su entidad financiera.
+                                                </p>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                            
+                        </table>
+
+                        <br/><br/><br/><br/>
+                        <br/><br/><br/><br/>
+
+                    </div>
+
+                    <div class="footer">
+                        <center>
+                            <ul>
+                                <li class="horizontal">
+                                    <p:commandLink id="botSEPA" action="clientesSepa.xhtml" >
+                                        <img src="#{facesContext.externalContext.requestContextPath}/recursos/iconos/avisos.png" class="izquierda" />
+                                        &#160;&#160;SEPA&#160;&#160;
+                                    </p:commandLink>
+                                </li>
+
+                                <li class="horizontal">
+                                    <p:commandLink id="botGRAD" action="clientesGraduacion.xhtml" >
+                                        <img src="#{facesContext.externalContext.requestContextPath}/recursos/iconos/agenda.png" class="izquierda" />
+                                        &#160;&#160;Graduacion&#160;&#160;
+                                    </p:commandLink>
+                                </li>
+
+                                <li class="horizontal">
+                                    <p:commandLink id="botRGPD" action="clientesRgpd.xhtml" >
+                                        <img src="#{facesContext.externalContext.requestContextPath}/recursos/iconos/visitas.png" class="izquierda"/>
+                                        &#160;&#160;RGPD&#160;&#160;
+                                    </p:commandLink>
+                                </li>
+                            </ul>
+                        </center>
+                    </div>
+
+                </h:form>
+
+            </div>
+
+        </h:body>
+
+    </f:view>
+
+</html>

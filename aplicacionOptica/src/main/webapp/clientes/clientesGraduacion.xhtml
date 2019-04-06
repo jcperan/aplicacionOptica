@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <f:view>
+
+        <h:head>
+            <title>Clientes</title>
+            <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
+            <meta name="viewport" content="width=device-width, initial-scale=1"/>
+            <meta name="apple-mobile-web-app-capable" content="yes"/>
+            <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+
+            <meta http-equiv="cache-control" content="max-age=0" />
+            <meta http-equiv="cache-control" content="no-cache" />
+            <meta http-equiv="expires" content="0" />
+            <meta http-equiv="expires" content="Tue, 01 Jan 2000 1:00:00 GMT" />
+            <meta http-equiv="pragma" content="no-cache" /> 
+
+            <link rel="stylesheet" href="#{facesContext.externalContext.requestContextPath}/recursos/optica.css" type="text/css" />
+
+        </h:head>
+
+        <h:body>
+
+            <div class="page">
+
+                <h:form id="formulario">
+
+                    <div class="header">
+                        <table width="100%">
+                            <tr>
+                                <td width="90%">
+                                    <p:inputText readonly="true" size="50" />
+                                </td>
+                                <td rowspan="2">
+                                    <h:graphicImage class="derecha" value="/recursos/logo.png" width="130px" height="60px" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p:commandButton value="Volver" class="izquierda" action="clientesLista.xhtml" icon="icono-volver" iconPos="left" />
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+
+
+                    <div class="content">
+
+                        <ui:include src="clientesDatos.xhtml" />
+
+                        <table width="100%">
+
+                            <tr>
+
+                                <td colspan="2">
+                                    <p:outputLabel value = "Graduaciones" styleClass="label" /><br/>
+
+                                    <ul id="listaClientes" data-role="listview" data-inset="true" style="padding: 0px !important;">
+                                        <p:dataList value="#{ControladorClientes.clientes.listaGraduaciones}" var="lista" paginator="false" >
+                                            <p:commandLink actionListener="#{ControladorClientes.cmdAceptaGraduacion}"
+                                                           action="clientesGraduacion.xhtml">
+                                                <f:facet name="id">
+                                                    <f:param value="#{lista.codigoLinea}" />
+                                                </f:facet>
+
+                                                <table width="100%">
+                                                    <tr>
+                                                        <td width="25px">
+                                                            <h:graphicImage value="/recursos/iconos/agenda.png"/>
+                                                        </td>
+                                                        <td>
+                                                            <h3><h:outputText id="lbNombre" value="#{lista.campo01}" /></h3>
+                                                        </td>
+                                                        <td align="right">
+                                                            <h4><h:outputText value ="#{lista.campo02}" /></h4>
+                                                        </td>
+                                                        <tr>
+                                                            <td colspan="3">
+                                                                <table width="100%">
+                                                                    <tr>
+                                                                        <td>
+                                                                            <table width="100%" border="0">
+                                                                                <tr>
+                                                                                    <td rowspan="3" valign="center" >
+                                                                                        <p:outputLabel value="O.D." style="font-size: 32px;text-align: center;" />
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        <p:outputLabel value = "EJE" styleClass="label" /><br/>
+                                                                                        <p:inputText readonly="true" size="6" value="#{lista.campo07}" styleClass="numerico" />
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        <p:outputLabel value = "CIL" styleClass="label" /><br/>
+                                                                                        <p:inputText readonly="true" size="6" value="#{lista.campo08}" styleClass="numerico" />
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        <p:outputLabel value = "ESF" styleClass="label" /><br/>
+                                                                                        <p:inputText readonly="true" size="6" value="#{lista.campo09}" styleClass="numerico" />
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        <p:outputLabel value = "ADD" styleClass="label" /><br/>
+                                                                                        <p:inputText readonly="true" size="6" value="#{lista.campo10}" styleClass="numerico" />
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        <p:outputLabel value = "AVI" styleClass="label" /><br/>
+                                                                                        <p:inputText readonly="true" size="6" value="#{lista.campo11}" styleClass="numerico" />
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        <p:outputLabel value = "AVF" styleClass="label" /><br/>
+                                                                                        <p:inputText readonly="true" size="6" value="#{lista.campo12}" styleClass="numerico" />
+                                                                                    </td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td>
+                                                                                        <p:outputLabel value = "DIVP" styleClass="label" /><br/>
+                                                                                        <p:inputText readonly="true" size="6" value="#{lista.campo13}" styleClass="numerico" />
+                                                                                    </td>                                                                                    
+                                                                                    <td>
+                                                                                        <p:outputLabel value = "DIVL" styleClass="label" /><br/>
+                                                                                        <p:inputText readonly="true" size="6" value="#{lista.campo14}" styleClass="numerico" />
+                                                                                    </td>                                                                                    
+                                                                                    <td>
+                                                                                        <p:outputLabel value = "AB" styleClass="label" /><br/>
+                                                                                        <p:inputText readonly="true" size="6" value="#{lista.campo15}" styleClass="numerico" />
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        <p:outputLabel value = "VAL" styleClass="label" /><br/>
+                                                                                        <p:inputText readonly="true" size="6" value="#{lista.campo16}" styleClass="numerico" />
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        <p:outputLabel value = "P1VAL" styleClass="label" /><br/>
+                                                                                        <p:inputText readonly="true" size="6" value="#{lista.campo17}" styleClass="numerico" />
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        <p:outputLabel value = "P1POS" styleClass="label" /><br/>
+                                                                                        <p:inputText readonly="true" size="6" value="#{lista.campo18}" styleClass="numerico" />
+                                                                                    </td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td colspan="2">
+                                                                                        <p:outputLabel value = "Reaccion Pupilar" styleClass="label" /><br/>
+                                                                                        <p:inputText readonly="true" size="24" value="#{lista.campo19}" styleClass="alfanumerico" />
+                                                                                    </td>                                                                                    
+                                                                                    <td colspan="2">
+                                                                                        <p:outputLabel value = "Test de Worth" styleClass="label" /><br/>
+                                                                                        <p:inputText readonly="true" size="24" value="#{lista.campo20}" styleClass="alfanumerico" />
+                                                                                    </td>                                                                                    
+                                                                                    <td colspan="2">
+                                                                                        <p:outputLabel value = "Test de Amsler" styleClass="label" /><br/>
+                                                                                        <p:inputText readonly="true" size="24" value="#{lista.campo21}" styleClass="alfanumerico" />
+                                                                                    </td>                                                                                    
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td colspan="7">
+                                                                                        <p:separator />
+                                                                                    </td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td rowspan="3">
+                                                                                        <p:outputLabel value="O.I." style="font-size: 32px;" />
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        <p:outputLabel value = "EJE" styleClass="label" /><br/>
+                                                                                        <p:inputText readonly="true" size="6" value="#{lista.campo23}" styleClass="numerico" />
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        <p:outputLabel value = "CIL" styleClass="label" /><br/>
+                                                                                        <p:inputText readonly="true" size="6" value="#{lista.campo24}" styleClass="numerico" />
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        <p:outputLabel value = "ESF" styleClass="label" /><br/>
+                                                                                        <p:inputText readonly="true" size="6" value="#{lista.campo25}" styleClass="numerico" />
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        <p:outputLabel value = "ADD" styleClass="label" /><br/>
+                                                                                        <p:inputText readonly="true" size="6" value="#{lista.campo26}" styleClass="numerico" />
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        <p:outputLabel value = "AVI" styleClass="label" /><br/>
+                                                                                        <p:inputText readonly="true" size="6" value="#{lista.campo27}" styleClass="numerico" />
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        <p:outputLabel value = "AVF" styleClass="label" /><br/>
+                                                                                        <p:inputText readonly="true" size="6" value="#{lista.campo28}" styleClass="numerico" />
+                                                                                    </td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td>
+                                                                                        <p:outputLabel value = "DIVP" styleClass="label" /><br/>
+                                                                                        <p:inputText readonly="true" size="6" value="#{lista.campo29}" styleClass="numerico" />
+                                                                                    </td>                                                                                    
+                                                                                    <td>
+                                                                                        <p:outputLabel value = "DIVL" styleClass="label" /><br/>
+                                                                                        <p:inputText readonly="true" size="6" value="#{lista.campo30}" styleClass="numerico" />
+                                                                                    </td>                                                                                    
+                                                                                    <td>
+                                                                                        <p:outputLabel value = "AB" styleClass="label" /><br/>
+                                                                                        <p:inputText readonly="true" size="6" value="#{lista.campo31}" styleClass="numerico" />
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        <p:outputLabel value = "VAL" styleClass="label" /><br/>
+                                                                                        <p:inputText readonly="true" size="6" value="#{lista.campo32}" styleClass="numerico" />
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        <p:outputLabel value = "P1VAL" styleClass="label" /><br/>
+                                                                                        <p:inputText readonly="true" size="6" value="#{lista.campo33}" styleClass="numerico" />
+                                                                                    </td>
+                                                                                    <td>
+                                                                                        <p:outputLabel value = "P1POS" styleClass="label" /><br/>
+                                                                                        <p:inputText readonly="true" size="6" value="#{lista.campo34}" styleClass="numerico" />
+                                                                                    </td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td colspan="2">
+                                                                                        <p:outputLabel value = "Reaccion Pupilar" styleClass="label" /><br/>
+                                                                                        <p:inputText readonly="true" size="24" value="#{lista.campo35}" styleClass="alfanumerico" />
+                                                                                    </td>                                                                                    
+                                                                                    <td colspan="2">
+                                                                                        <p:outputLabel value = "Test de Worth" styleClass="label" /><br/>
+                                                                                        <p:inputText readonly="true" size="24" value="#{lista.campo36}" styleClass="alfanumerico" />
+                                                                                    </td>                                                                                    
+                                                                                    <td colspan="2">
+                                                                                        <p:outputLabel value = "Test de Amsler" styleClass="label" /><br/>
+                                                                                        <p:inputText readonly="true" size="24" value="#{lista.campo37}" styleClass="alfanumerico" />
+                                                                                    </td>                                                                                    
+                                                                                </tr>
+                                                                            </table>
+                                                                        </td>
+                                                                    </tr>
+                                                                </table>
+                                                            </td>
+                                                        </tr>
+                                                    </tr>
+                                                </table>
+                                            </p:commandLink>
+                                        </p:dataList>
+                                    </ul>
+                                </td>
+                            </tr>
+
+
+                        </table>
+
+
+                        <br/><br/><br/><br/>
+                        <br/><br/><br/><br/>
+
+                    </div>
+
+                    <div class="footer">
+                        <center>
+                            <ul>
+                                <li class="horizontal">
+                                    <p:commandLink id="botSEPA" action="clientesSepa.xhtml" >
+                                        <img src="#{facesContext.externalContext.requestContextPath}/recursos/iconos/avisos.png" class="izquierda" />
+                                        &#160;&#160;SEPA&#160;&#160;
+                                    </p:commandLink>
+                                </li>
+
+                                <li class="horizontal">
+                                    <p:commandLink id="botGRAD" action="clientesGraduacion.xhtml" >
+                                        <img src="#{facesContext.externalContext.requestContextPath}/recursos/iconos/agenda.png" class="izquierda" />
+                                        &#160;&#160;Graduacion&#160;&#160;
+                                    </p:commandLink>
+                                </li>
+
+                                <li class="horizontal">
+                                    <p:commandLink id="botRGPD" action="clientesRgpd.xhtml" >
+                                        <img src="#{facesContext.externalContext.requestContextPath}/recursos/iconos/visitas.png" class="izquierda"/>
+                                        &#160;&#160;RGPD&#160;&#160;
+                                    </p:commandLink>
+                                </li>
+                            </ul>
+                        </center>
+                    </div>
+
+                </h:form>
+
+            </div>
+
+        </h:body>
+
+    </f:view>
+
+</html>

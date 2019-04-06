@@ -1,0 +1,68 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <f:view>
+        <table width="100%">
+
+            <tr>
+
+                <td valign="top">
+
+                    <table cellspacing="10px">
+
+                        <tr>
+                            <td colspan="1" valign="top" width="80px">
+                                <p:outputLabel value = "Codigo" styleClass="label" /><br/>
+                                <p:inputText readonly="true" size="10" value="#{ControladorClientes.clientes.cliente.codigoCliente}" />
+                            </td>
+
+                            <td colspan="2">
+                                <p:outputLabel value = "Apellidos" styleClass="label" /><br/>
+                                <p:inputText readonly="true" size="50" value="#{ControladorClientes.clientes.cliente.apellidos}" /><br/>
+                                <p:inputText readonly="true" size="50" value="#{ControladorClientes.clientes.cliente.razonSocial}" /><br/>
+                                <p:inputText readonly="true" size="20" value="#{ControladorClientes.clientes.cliente.nombre}" />
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td colspan="3"><p:separator/></td>
+                        </tr>
+
+                        <tr>
+                            <td colspan="2">
+                                <p:outputLabel value = "Direcion" styleClass="label" /><br/>
+                                <p:inputText readonly="true" size="50" value="#{ControladorClientes.clientes.cliente.direccion}" /><br/>
+                                <p:inputText readonly="true" size="5" value="#{ControladorClientes.clientes.cliente.codigoPostal}" />&#160;<p:inputText readonly="true" size="30" value="#{ControladorClientes.clientes.cliente.poblacion}" /> <br/>
+                                <p:inputText readonly="true" size="30" value="#{ControladorClientes.clientes.cliente.provincia}" />
+                            </td>
+                            <td colspan="1" valign="top" width="80px">
+                                <p:outputLabel value = "Telefonos" styleClass="label" /><br/>
+                                <p:inputText readonly="true" size="14" value="#{ControladorClientes.clientes.cliente.telefono1}" /><br/>
+                                <p:inputText readonly="true" size="14" value="#{ControladorClientes.clientes.cliente.telefono2}" /><br/>
+                            </td>
+                        </tr>
+
+
+                    </table>
+
+                </td>
+
+                <td align="right">
+                    <p:graphicImage id="imagen" value="#{ControladorClientes.clientes.clienteRGPD.imagen}" cache="false"
+                                    style="width: 280px;height: 200px;border:solid black" />
+
+                    <p:fileUpload fileUploadListener="#{ControladorClientes.subirFoto}" update="imagen"
+                                  uploadLabel="Subir" accept="image/*;capture=camera" label="Foto" style="width: 280px;"
+                                  mode="advanced" multiple="false" auto="true" skinSimple="true" />
+                </td>
+            </tr>
+
+        </table>
+
+    </f:view>
+
+</html>
+

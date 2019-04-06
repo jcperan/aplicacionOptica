@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <f:view>
+
+        <h:head>
+            <title>Clientes</title>
+            <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
+            <meta name="viewport" content="width=device-width, initial-scale=1"/>
+            <meta name="apple-mobile-web-app-capable" content="yes"/>
+            <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+
+            <meta http-equiv="cache-control" content="max-age=0" />
+            <meta http-equiv="cache-control" content="no-cache" />
+            <meta http-equiv="expires" content="0" />
+            <meta http-equiv="expires" content="Tue, 01 Jan 2000 1:00:00 GMT" />
+            <meta http-equiv="pragma" content="no-cache" /> 
+
+            <link rel="stylesheet" href="#{facesContext.externalContext.requestContextPath}/recursos/optica.css" type="text/css" />
+
+        </h:head>
+
+        <h:body>
+
+            <div class="page">
+
+                <h:form id="formulario">
+                    
+                    <p:growl id="messages" />
+
+                    <div class="header">
+                        <table width="100%">
+                            <tr>
+                                <td width="90%">
+                                    <p:inputText readonly="true" size="50" />
+                                </td>
+                                <td rowspan="2">
+                                    <h:graphicImage class="derecha" value="/recursos/logo.png" width="130px" height="60px" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p:commandButton value="Volver" class="izquierda" action="clientesLista.xhtml" icon="icono-volver" iconPos="left" />
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+
+
+                    <div class="content">
+
+                        <ui:include src="clientesDatos.xhtml" />
+
+                        <table width="100%"> 
+
+                            <tr>
+                                <td colspan="3">
+                                    <table>
+                                        <tr>
+                                            <td valign="top" width="10px">
+                                                <center>
+                                                    <p:signature guideline="true" style="width:300px;height:200px" widgetVar="sig" value="#{ControladorClientes.firmaRgpd}" >
+
+                                                    </p:signature>
+                                                </center>
+                                                <p:commandButton value="Borrar Firma" icon="ui-icon-close" type="button" onclick="PF('sig').clear()"/>
+                                                <p:splitButton   value="Grabar Firma" type="button" class="derecha" update="messages" icon="ui-icon-check"
+                                                                 actionListener="#{ControladorClientes.cmdGrabarFirma1}" />
+                                            </td>
+                                            <td valign="top">
+                                                <p:outputLabel class="label" value="Recogida de Datos Generica" /><br/><br/>
+                                                <p>
+                                                    En cumplimiento de lo que dispone la normativa vigente en materia de proteccion de datos personales, 
+                                                    le informamos que los datos personales aportados en este formulario seran tratados por esta
+                                                    empresa, con fines sanitarios asi como gestion administrativa, economica y comercial.
+                                                    Estos datos se conservaran mientras dure la finalidad para la que se han obtenido o mientras exista 
+                                                    alguna obligacion legal de conservacion. No se comunicaran a terceros, salvo prevision legal al respecto. 
+                                                    Una vez sus datos ya no sean necesarios, se suprimiran con las medidas de seguridad adecuadas que garanticen 
+                                                    la confidencialidad de los mismos.
+                                                    Podra solicitar el acceso, rectificacion, supresion, limitacion, portabilidad, u oposicion escribiendo a 
+                                                    info@opticasantaeulalia.com. Tiene igualmente derecho a retirar el consentimiento prestado en cualquier 
+                                                    momento. La retirada del consentimiento no afectara a la licitud del tratamiento efectuado antes de la 
+                                                    retirada del mismo. Tambien tiene derecho a presentar una reclamacion, si considera que el tratamiento de 
+                                                    datos personales no se ajusta a la normativa vigente, ante la Agencia de Proteccion de Datos.
+                                                </p>
+                                                <p>
+                                                    Con la firma del presente documento, el firmante se considera informado y otorga su consentimiento para el 
+                                                    tratamiento mencionado, pudiendo ampliar informacion sobre el uso
+                                                    de sus datos accediendo a www.rgpd.es
+                                                </p>
+                                                <p>
+                                                    Firmando este documento nos da su consentimiento para enviarle informacion comercial
+                                                    periodica sobre nuestros productos y/o servicios.
+                                                </p>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                            
+                        </table>
+
+                        <br/><br/><br/><br/>
+                        <br/><br/><br/><br/>
+
+                    </div>
+
+                    <div class="footer">
+                        <center>
+                            <ul>
+                                <li class="horizontal">
+                                    <p:commandLink id="botSEPA" action="clientesSepa.xhtml" >
+                                        <img src="#{facesContext.externalContext.requestContextPath}/recursos/iconos/avisos.png" class="izquierda" />
+                                        &#160;&#160;SEPA&#160;&#160;
+                                    </p:commandLink>
+                                </li>
+
+                                <li class="horizontal">
+                                    <p:commandLink id="botGRAD" action="clientesGraduacion.xhtml" >
+                                        <img src="#{facesContext.externalContext.requestContextPath}/recursos/iconos/agenda.png" class="izquierda" />
+                                        &#160;&#160;Graduacion&#160;&#160;
+                                    </p:commandLink>
+                                </li>
+
+                                <li class="horizontal">
+                                    <p:commandLink id="botRGPD" action="clientesRgpd.xhtml" >
+                                        <img src="#{facesContext.externalContext.requestContextPath}/recursos/iconos/visitas.png" class="izquierda"/>
+                                        &#160;&#160;RGPD&#160;&#160;
+                                    </p:commandLink>
+                                </li>
+                            </ul>
+                        </center>
+                    </div>
+
+                </h:form>
+
+            </div>
+
+        </h:body>
+
+    </f:view>
+
+</html>
